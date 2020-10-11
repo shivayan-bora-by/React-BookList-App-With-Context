@@ -1,29 +1,37 @@
-import React, { Component } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import React, { Component } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 class Navbar extends Component {
-    // Used to consume context data
-    // We need to specify whatever context we want to consume inside this component
-    // This will look up the component tree and the first time it finds a provider for the mentioned context and then it will have access to the data specified in the context.
-    static contextType = ThemeContext;
-    render() { 
-        // This is used to access the context data
-        const { isLightTheme, light, dark } = this.context;
-        const theme = isLightTheme ? light : dark;
-        return ( 
-            <nav style={{
+  render() {
+    // This is used to access the context data
+    return (
+        // This is used to consume the context of ThemeContext that we created
+        // This is mainly used when we have functional components
+        // Also, this way we can consume multiple contexts
+        <ThemeContext.Consumer>
+        {/* This takes in a context object as a parameter which contains the context state */}
+        {(context) => {
+          const { isLightTheme, light, dark } = context;
+          const theme = isLightTheme ? light : dark;
+          return (
+            <nav
+              style={{
                 background: theme.ui,
                 color: theme.syntax,
-            }}>
-                <h1>Context App</h1>
-                <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
+              }}
+            >
+              <h1>Context App</h1>
+              <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+              </ul>
             </nav>
-         );
-    }
+          );
+        }}
+      </ThemeContext.Consumer>
+    );
+  }
 }
- 
+
 export default Navbar;
