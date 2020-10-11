@@ -18,11 +18,17 @@ class ThemeContextProvider extends Component {
             bg: '#555'
         }
      }
+
+    // An updater function to update the state of the context
+    toggleTheme = () => {
+        this.setState({ isLightTheme: !this.state.isLightTheme });
+    } 
+
     render() { 
         return (
             // This JSX tag is used to wrap around the components which needs a global state
-            // value property specifies the global state
-            <ThemeContext.Provider value={{...this.state}}>
+            // value property specifies the global state and any update functions for the context state
+            <ThemeContext.Provider value={{...this.state, toggleTheme: this.toggleTheme}}>
                 {this.props.children}
             </ThemeContext.Provider>
          );
