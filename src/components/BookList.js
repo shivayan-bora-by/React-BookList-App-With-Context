@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 class BookList extends Component {
-    render() { 
+    // Used to consume context data
+    // We need to specify whatever context we want to consume inside this component
+    // This will look up the component tree and the first time it finds a provider for the mentioned context and then it will have access to the data specified in the context.
+    static contextType = ThemeContext;
+    render() {
+        // This is used to access the context data
+        const { isLightTheme, light, dark } = this.context;
+        const theme = isLightTheme ? light : dark;
         return ( 
-            <div className='book-list'>
+            <div className='book-list' style={{
+                color: theme.syntax,
+                background: theme.bg,
+            }}>
                 <ul>
-                    <li>The Way of Kings</li>
-                    <li>The Name of the Wind</li>
-                    <li>The FInal Empire</li>
+                    <li style={{ background:theme.ui }}>The Way of Kings</li>
+                    <li style={{ background:theme.ui }}>The Name of the Wind</li>
+                    <li style={{ background:theme.ui }}>The FInal Empire</li>
                 </ul>
             </div>
          );
