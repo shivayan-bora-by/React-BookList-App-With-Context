@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About the project:
+This is a small project to learn how to use context and hooks for modern React Applications from Net Ninja's [YouTube tutorial](https://www.youtube.com/watch?v=6RhOzQciVwI&list=PL4cUxeGkcC9hNokByJilPg5g9m2APUePI&index=1).
+
 ## Available Scripts
 
 In the project directory, you can run:
